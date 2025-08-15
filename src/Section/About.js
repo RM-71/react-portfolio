@@ -24,7 +24,7 @@ export default function About() {
             Reymark De Castro, a student front‑end developer from De La Salle Lipa. I specialize in building modern, accessible web apps.
           </p>
           <div className="mt-8 space-y-6">
-            <h2 className="text-2xl font-bold">Professional Summary</h2>
+            <h2 className="text-2xl font-bold">Profession Summary</h2>
             <p className="text-slate-300">
               Driven software architect with expertise in developing scalable, high-performance enterprise solutions. Passionate about leveraging cutting-edge technologies to solve complex business challenges.
             </p>
