@@ -25,7 +25,7 @@ export default function Hero() {
           transition={{ duration: 0.9 }}
           className="text-5xl mt-5 md:text-7xl font-extrabold leading-tight gradient-text drop-shadow-lg"
         >
-          Crafting immersive<br className="hidden md:block"/> web experiences.
+          Reymark<br className="hidden md:block"/> De Castro
         </motion.h1>
 
         <motion.p
@@ -34,7 +34,7 @@ export default function Hero() {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="text-gray-300 max-w-2xl text-lg"
         >
-          I blend motion, interaction, and clean aesthetics to build delightful digital products.
+          Crafting seamless experiences where design meets interaction.
         </motion.p>
 
         <div className="flex items-center gap-4 mt-2">

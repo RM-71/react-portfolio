@@ -1,24 +1,33 @@
+import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 export default function Contact() {
+  const [sent, setSent] = useState(false)
+  const formRef = useRef(null)
+
   return (
     <section id="contact" className="section">
       <div className="max-w-3xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold">Contact Me</h2>
         <p className="text-slate-300 mt-3">We'd love to hear from you! Whether you have a question, a project in mind, or just want to say hello, feel free to reach out.</p>
 
+        {sent && (
+          <div className="bg-green-600/80 text-white rounded-xl px-4 py-2 my-4 text-center">
+            Your email has been sent!
+          </div>
+        )}
+
         <motion.form
+          ref={formRef}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           onSubmit={(e) => {
             e.preventDefault();
-            const form = e.currentTarget
-            const data = new FormData(form)
-            const name = data.get('name')
-            const email = data.get('email')
-            const message = data.get('message')
+            setSent(true);
+            formRef.current.reset();
+            // You can add your email sending logic here
           }}
           className="glass mt-6 rounded-3xl p-6 space-y-4"
         >

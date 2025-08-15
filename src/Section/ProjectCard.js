@@ -4,7 +4,8 @@ import { motion } from 'framer-motion'
 export default function ProjectCard({ p, i }) {
   const [showModal, setShowModal] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
-  const screens = p.screens || [p.cover] // fallback to cover if no screens
+  const screens = p.screens || [{ img: p.cover, title: p.title, description: p.description }]
+  const activeScreen = screens[activeIndex]
 
   const prevSlide = () => setActiveIndex((activeIndex - 1 + screens.length) % screens.length)
   const nextSlide = () => setActiveIndex((activeIndex + 1) % screens.length)
@@ -40,53 +41,50 @@ export default function ProjectCard({ p, i }) {
       </motion.article>
 
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-          <div className="bg-gray-900 rounded-2xl p-8 max-w-xl w-full relative">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
+          <div className="fixed inset-0 flex items-center justify-center">
             <button
               onClick={() => setShowModal(false)}
-              className="absolute top-4 right-4 text-white text-2xl"
+              className="absolute top-8 right-12 text-white text-4xl z-20"
               aria-label="Close"
             >
               &times;
             </button>
-            {/* Carousel */}
-            <div className="w-full aspect-[16/9] mb-4 overflow-hidden rounded-lg relative flex items-center justify-center">
+            <div className="relative w-full h-full flex items-center justify-center">
               <img
-                src={screens[activeIndex]}
-                alt={p.title}
+                src={activeScreen.img}
+                alt={activeScreen.title}
                 className="w-full h-full object-cover"
+                style={{ maxHeight: '100vh', maxWidth: '100vw' }}
               />
+              <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent px-8 py-10 flex flex-col items-center">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 text-center">{activeScreen.title}</h2>
+                <p className="mb-4 text-lg text-white text-center max-w-1xl">{activeScreen.description}</p>
+              </div>
               {screens.length > 1 && (
                 <>
                   <button
                     onClick={prevSlide}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 text-white px-2 py-1 rounded-full"
+                    className="absolute left-8 top-1/2 -translate-y-1/2 bg-black/40 text-white px-4 py-2 rounded-full text-2xl z-20"
                   >
                     &#8592;
                   </button>
                   <button
                     onClick={nextSlide}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white px-2 py-1 rounded-full"
+                    className="absolute right-8 top-1/2 -translate-y-1/2 bg-black/40 text-white px-4 py-2 rounded-full text-2xl z-20"
                   >
                     &#8594;
                   </button>
-                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
+                  <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
                     {screens.map((_, idx) => (
                       <span
                         key={idx}
-                        className={`w-2 h-2 rounded-full ${idx === activeIndex ? 'bg-white' : 'bg-gray-500'}`}
+                        className={`w-3 h-3 rounded-full ${idx === activeIndex ? 'bg-white' : 'bg-gray-500'}`}
                       />
                     ))}
                   </div>
                 </>
               )}
-            </div>
-            <h2 className="text-2xl font-bold mb-2">{p.title}</h2>
-            <p className="text-slate-300 mb-4">{p.description}</p>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {p.tags.map(t => (
-                <span key={t} className="px-2 py-1 text-xs rounded-full bg-white/5 border border-white/10">{t}</span>
-              ))}
             </div>
           </div>
         </div>
