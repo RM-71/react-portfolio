@@ -8,7 +8,7 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto">
         <div className="flex items-end justify-between mb-6">
           <h2 className="text-3xl md:text-4xl font-bold">Projects</h2>
-          <a href="https://github.com/yourname" target="_blank" className="text-slate-300 hover:text-white">View GitHub →</a>
+          <a href="https://github.com/RM-71" target="_blank" className="text-slate-300 hover:text-white">View GitHub →</a>
         </div>
         <motion.div
           initial="hidden"
